@@ -1,5 +1,5 @@
 # nestedFor
-Loop through all permutations of some container, e.g. vector&lt;vector&lt;int>>.
+Loop through all permutations of some container.
 
 For example, if you have a `vector<vector<int>>` as `{{1, 2}, {3, 4}, {}, {5, 6}}`, `nestedFor` iterates all 8 combinations.
 
