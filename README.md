@@ -79,5 +79,5 @@ creates the output:
 * C++11 required
 * empty inner vectors are allowed, the corresponding index is -1, then
 * you can easily modify the code to get iterators instead of indices and/or values in your callback function
-* although you can also use leave out the `const` qualifiers in your callback, changing values has usually no reasonable effect
+* although you can leave out the `const` qualifiers in your callback, changing values has usually no reasonable effect
 * although we use this function heavily, performance is not yet tested; especially due to indices and values given, a bare loop might be faster for some instances, you might need to test for yourself it is performance-critical
