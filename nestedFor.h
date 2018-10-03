@@ -34,7 +34,8 @@ namespace nestedFor
     template<typename OuterItT, typename=void>
     struct retrieveConstCorrectIterator
     {
-        using iterator = typename OuterItT::value_type::iterator;
+        using vt  = typename OuterItT::value_type;
+        using iterator = typename vt::iterator;
     };
     
     template<typename OuterItT>
@@ -49,10 +50,10 @@ namespace nestedFor
     // in each iteration, func is called with indices showing the position
     // and respective values;
     // note that empty inner vectors are allowed, the respective index is -1, then
-    template<typename OuterItT, typename Func>
+    template<typename OuterItT, typename Func,
+        typename InnerItT = typename OuterItT::value_type::const_iterator>
     void run(OuterItT begin, OuterItT end, Func func)
     {
-        using InnerItT = typename retrieveConstCorrectIterator<OuterItT>::iterator;
         using ItVecT = std::vector<InnerItT>;
         using ItVecItT = typename ItVecT::iterator;
         
@@ -70,10 +71,10 @@ namespace nestedFor
         
         ItVecT runIterators(numInnerVecs), startIterators(numInnerVecs), endIterators(numInnerVecs);
         ItVecItT runItVecIt = runIterators.begin(),
-        startItVecIt = startIterators.begin(),
-        endItVecIt = endIterators.begin();
-        IdxVecItT runIdxIterators = idxVec.begin(),
-        runValueIterators = valueVec.begin();
+            startItVecIt = startIterators.begin(),
+            endItVecIt = endIterators.begin();
+        IdxVecItT runIdxIterators = idxVec.begin();
+        ValueVecItT runValueIterators = valueVec.begin();
         
         for(OuterItT it = begin; it != end; ++it, ++runItVecIt, ++startItVecIt, ++endItVecIt,
             ++runIdxIterators, ++runValueIterators)
