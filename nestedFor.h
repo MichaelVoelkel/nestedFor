@@ -141,7 +141,9 @@ namespace nestedFor
                 {
                     ++*itToMove;
                     ++*idxIt;
-                    *valueIt = **itToMove;
+                    
+                    if(*itToMove != *itToMoveEnd)
+                        *valueIt = **itToMove;
                 }
             };
             
