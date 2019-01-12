@@ -107,7 +107,12 @@ namespace nestedFor
             ValueVecItT valueIt = valueVec.begin();
             
             bool bigBreak = false;
-            ++*itToMove;
+            
+            // in case of starting with empty vector, we do not want to move vector
+            if(*itToMove != *itToMoveEnd)
+            {
+                ++*itToMove;
+            }
             
             if(*itToMove != *itToMoveEnd)
             {
